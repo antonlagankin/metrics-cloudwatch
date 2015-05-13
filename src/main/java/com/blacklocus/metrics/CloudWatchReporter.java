@@ -239,6 +239,11 @@ public class CloudWatchReporter extends ScheduledReporter {
         }
     }
 
+    @Override
+    public void stop() {
+        cloudWatch.shutdown();
+        super.stop();
+    }
 
     void reportGauge(Map.Entry<String, Gauge> gaugeEntry, String type, List<MetricDatum> data) {
         Gauge gauge = gaugeEntry.getValue();
